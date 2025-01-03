@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import CategoryMenu from './components/category-menu/category-menu.component';
 
-function App() {
-  const [count, setCount] = useState(0)
+const categories = [
+  {
+    id: 1,
+    title: "Category A",
+    imageUrl: "https://picsum.photos/500/300",
+  },
+  {
+    id: 2,
+    title: "Category B",
+    imageUrl: "https://picsum.photos/200/300",
+  },
+  {
+    id: 3,
+    title: "Category C",
+    imageUrl: "https://picsum.photos/200/300",
+  },
+  {
+    id: 4,
+    title: "Category D",
+    imageUrl: "https://picsum.photos/200/300",
+  },
+  {
+    id: 5,
+    title: "Category E",
+    imageUrl: "https://picsum.photos/200/300",
+  },
+];
 
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <CategoryMenu categories={categories}/>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
