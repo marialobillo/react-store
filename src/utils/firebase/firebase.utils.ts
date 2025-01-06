@@ -7,7 +7,6 @@ import {
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { 
-    getFirestorei,
     doc,
     getDoc,
     setDoc,
