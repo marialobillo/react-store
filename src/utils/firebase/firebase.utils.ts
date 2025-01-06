@@ -4,6 +4,7 @@ import {
     signInWithRedirect,
     signInWithPopup,
     User,
+    createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { 
@@ -69,4 +70,22 @@ export const createUserDocumentFromAuth = async (userAuth: User): Promise<Docume
         }
     }
     return userDocRef;
+}
+
+
+/**
+ * Creates a user with email and password.
+ * @param email - The email of the user.
+ * @param password - The password of the user.
+ * @returns A Promise<User | void>
+ */
+export const createAuthUserWithEmailAndPassword = async (email: string, password: string): Promise<User | void> => {
+    try {
+        if (!email || !password) return;
+
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        return user;
+    } catch (error) {
+        console.error('Error creating user: ', (error as Error).message);
+    }
 }
