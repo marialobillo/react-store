@@ -10,7 +10,7 @@ const SignIn = () => {
   const logGoogleUser = async () => {
     try {
       const { user } = await signInWithGooglePopup()
-      const userDocRef = await createUserDocumentFromAuth(user)
+      const userDocRef = await createUserDocumentFromAuth(user, {})
     } catch (error) {
       console.error('Error on google SignIn with PopUp: ', error)
     }

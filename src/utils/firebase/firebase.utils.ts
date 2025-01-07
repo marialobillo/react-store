@@ -49,7 +49,7 @@ export const db = getFirestore();
  * @param userAuth - The authenticated user object.
  * @returns A Promise<void>
  */
-export const createUserDocumentFromAuth = async (userAuth: User): Promise<DocumentReference<UserData> | void> => {
+export const createUserDocumentFromAuth = async (userAuth: User, additionalInfo: Record<string, any> = {}): Promise<DocumentReference<UserData> | void> => {
     if (!userAuth) return;
 
     const userDocRef = doc(db, 'users', userAuth.uid) as DocumentReference<UserData>;
@@ -64,6 +64,7 @@ export const createUserDocumentFromAuth = async (userAuth: User): Promise<Docume
                 displayName,
                 email,
                 createdAt,
+                ...additionalInfo
             });
         } catch (error) {
             console.error('Error creating user: ', (error as Error).message);

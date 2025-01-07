@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-import { createAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 
 const defaultFormFields = {
-    name: '',
+    displayName: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -11,7 +11,7 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields)
-    const { name, email, password, confirmPassword } = formFields;
+    const { displayName, email, password, confirmPassword } = formFields;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -20,15 +20,25 @@ const SignUpForm = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
         if (password !== confirmPassword) {
             alert("Passwords don't match");
             return;
         }
 
         try {
-            await createAuthUserWithEmailAndPassword(email, password);
-            setFormFields(defaultFormFields);
+            const user = await createAuthUserWithEmailAndPassword(email, password);
+            if (user) {
+                await createUserDocumentFromAuth(user, { displayName });
+                setFormFields(defaultFormFields);
+            } else {
+                console.error('Failed to create user');
+            }
         } catch (error) {
+            if (error.code === 'auth/email-already-in-use') { 
+                alert('Email already in use');
+                return;
+            }
             console.error('Error creating user: ', (error as Error).message);
         }
     }
@@ -41,9 +51,9 @@ const SignUpForm = () => {
                 <input
                     type="text"
                     required
-                    name="name"
+                    name="displayName"
                     onChange={handleChange}
-                    value={name} />
+                    value={displayName} />
 
                 <label htmlFor="">Email</label>
                 <input
