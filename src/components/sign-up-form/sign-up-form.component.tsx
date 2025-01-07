@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
+import { FirebaseError } from 'firebase/app'
 
 const defaultFormFields = {
     displayName: '',
@@ -12,6 +13,8 @@ const defaultFormFields = {
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields)
     const { displayName, email, password, confirmPassword } = formFields;
+
+    const resetFormFields = () => setFormFields(defaultFormFields);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -30,16 +33,20 @@ const SignUpForm = () => {
             const user = await createAuthUserWithEmailAndPassword(email, password);
             if (user) {
                 await createUserDocumentFromAuth(user, { displayName });
-                setFormFields(defaultFormFields);
+                resetFormFields();
             } else {
                 console.error('Failed to create user');
             }
         } catch (error) {
-            if (error.code === 'auth/email-already-in-use') { 
-                alert('Email already in use');
-                return;
+            if (error instanceof Error) {
+                if ((error as FirebaseError).code === 'auth/email-already-in-use') {
+                    alert('Email already in use');
+                    return;
+                }
+                console.error('Error creating user: ', error.message);
+            } else {
+                console.error('Unexpected error occurred:', error);
             }
-            console.error('Error creating user: ', (error as Error).message);
         }
     }
 
