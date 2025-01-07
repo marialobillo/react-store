@@ -1,0 +1,38 @@
+// .auth-container {
+//     display: flex;
+//     height: 100vh; // Full screen height
+//     width: 100%;
+
+//     .sign-in-section,
+//     .sign-up-form {
+//         flex: 1;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         padding: 20px;
+//     }
+
+//     .sign-in-section {
+//         background-color: #f4f4f4; // Light gray for contrast
+//     }
+
+//     .sign-up-form {
+//         background-color: white;
+//         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+//     }
+
+//     button {
+//         padding: 10px 20px;
+//         font-size: 16px;
+//         color: white;
+//         background-color: black;
+//         border: none;
+//         cursor: pointer;
+//         transition: background-color 0.3s ease;
+
+//         &:hover {
+//             background-color: #333;
+//         }
+//     }
+// }
