@@ -1,69 +1,9 @@
-$primary-color: #333;
-$secondary-color: #666;
-$input-padding: 10px;
-$input-font-size: 16px;
-
-.sign-up-form {
+.sign-up-container {
     display: flex;
-    transform: translateY(-50%);
-    width: 300px;
-    padding: 20px;
-    background-color: white;
+    flex-direction: column;
+    width: 380px;
 
     h2 {
-        text-align: center;
-        color: $primary-color;
-        margin-bottom: 20px;
-        font-size: 24px;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        .form-input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-
-            label {
-                font-size: 14px;
-                color: $secondary-color;
-                font-weight: bold;
-            }
-
-            input {
-                padding: $input-padding;
-                font-size: $input-font-size;
-                border: none;
-                border-bottom: 1px solid $secondary-color;
-                outline: none;
-                transition: border-color 0.3s ease;
-
-                &:focus {
-                    border-bottom: 1px solid $primary-color;
-                }
-            }
-        }
-
-        button {
-            padding: $input-padding;
-            font-size: $input-font-size;
-            color: white;
-            background-color: black;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-
-            &:hover {
-                background-color: #333;
-            }
-
-            &:disabled {
-                background-color: grey;
-                cursor: not-allowed;
-            }
-        }
+        margin: 10px 0;
     }
 }

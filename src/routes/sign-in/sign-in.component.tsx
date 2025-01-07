@@ -17,12 +17,9 @@ const SignIn = () => {
   }
 
   return (
-    <div className="auth-container">
-      <div className="sign-in-section">
-        <h2>Sign In</h2>
-        <button onClick={logGoogleUser}>Sign In With Google Pop-Up</button>
-      </div>
-
+    <div>
+      <h1>Sign In Page</h1>
+      <button onClick={logGoogleUser}>Sign in with Google Popup</button>
       <SignUpForm />
     </div>
   )
