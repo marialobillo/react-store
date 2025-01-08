@@ -1,38 +1,107 @@
-// .auth-container {
-//     display: flex;
-//     height: 100vh; // Full screen height
-//     width: 100%;
+/* Container centers the content vertically and horizontally */
+.signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 8px;
+    background-color: #f9f9f9;
+}
 
-//     .sign-in-section,
-//     .sign-up-form {
-//         flex: 1;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         align-items: center;
-//         padding: 20px;
-//     }
+/* Content displayed in a row with a slightly larger max width */
+.signin-row {
+    display: flex;
+    gap: 50px;
+    max-width: 950px;
+    width: 100%;
+    justify-content: center;
+}
 
-//     .sign-in-section {
-//         background-color: #f4f4f4; // Light gray for contrast
-//     }
+/* Each box with a balanced width */
+.signin-content,
+.signup-form-wrapper {
+    flex: 1;
+    max-width: 500px;
+    /* Slightly wider to fit the inputs */
+    padding: 16px;
+    // border: 1px solid #ddd;
+    // border-radius: 8px;
+    background-color: #fff;
+    justify-content: center;
+    // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    // box-sizing: border-box;
+    /* Ensure padding doesn’t overflow */
+}
 
-//     .sign-up-form {
-//         background-color: white;
-//         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-//     }
+/* Ensure form inputs fit well */
+.signup-form-wrapper input,
+.signup-form-wrapper button,
+.signin-content button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 16px;
+    // border: 1px solid #ccc;
+    // border-radius: 4px;
+    // box-sizing: border-box;
+}
 
-//     button {
-//         padding: 10px 20px;
-//         font-size: 16px;
-//         color: white;
-//         background-color: black;
-//         border: none;
-//         cursor: pointer;
-//         transition: background-color 0.3s ease;
+/* Button styling */
+.signin-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4285f4;
+    border: none;
+    cursor: pointer;
+}
 
-//         &:hover {
-//             background-color: #333;
-//         }
-//     }
-// }
+.signin-button:hover {
+    background-color: #357ae8;
+}
+
+/* Media query for tablets (stack vertically) */
+@media (max-width: 768px) {
+    .signin-row {
+        flex-direction: column;
+        max-width: 90%;
+        gap: 24px;
+    }
+
+    .signin-content,
+    .signup-form-wrapper {
+        max-width: 100%;
+        margin: 8px auto;
+    }
+}
+
+/* Media query for phones */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .signin-button {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .signup-form-wrapper input,
+    .signup-form-wrapper button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Apply margin to add space manually */
+.signin-content,
+.signup-form-wrapper {
+    margin-right: 20px;
+    /* Space to the right of each div */
+}
+
+/* Remove margin on the last div */
+.signup-form-wrapper {
+    margin-right: 0;
+}
